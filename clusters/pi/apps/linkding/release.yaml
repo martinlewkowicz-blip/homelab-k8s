@@ -8,12 +8,17 @@ spec:
   chart:
     spec:
       chart: linkding
-      version: ">=1.0.0"
+      version: "3.0.0"
       sourceRef:
         kind: HelmRepository
         name: linkding
         namespace: linkding
   values:
-    persistence:
-      enabled: true
-      size: 2Gi
+    persistentVolumeClaim:
+      create: false
+      existingPersistentVolumeClaim: linkding-data
+    service:
+      type: NodePort
+    ports:
+      http:
+        nodePort: 30090
