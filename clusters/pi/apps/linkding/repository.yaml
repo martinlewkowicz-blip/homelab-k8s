@@ -5,4 +5,4 @@ metadata:
   namespace: linkding
 spec:
   interval: 1h
-  url: https://charts.gabe565.com
+  url: https://charts.pascaliske.dev
