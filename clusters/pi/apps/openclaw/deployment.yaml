@@ -18,6 +18,11 @@ spec:
     spec:
       nodeSelector:
         kubernetes.io/hostname: thevoid
+      tolerations:
+        - key: gpu
+          operator: Equal
+          value: on-demand
+          effect: NoSchedule
       automountServiceAccountToken: false
       securityContext:
         fsGroup: 1000
