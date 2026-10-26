@@ -1,0 +1,44 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: traefik
+  namespace: kube-system
+spec:
+  # Traefik als DaemonSet im Host-Netz: bindet 80/443 direkt (UFW wirkt dann wieder).
+  # Voraussetzung: Pi-hole-FTL belegt 443 nicht mehr (erledigt).
+  valuesContent: |-
+    hostNetwork: true
+    deployment:
+      kind: DaemonSet
+    # Pflicht bei hostNetwork: maxUnavailable > 0, ohne maxSurge, damit nie zwei
+    # Traefik-Pods gleichzeitig 80/443 binden
+    updateStrategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: "100%"
+    # Chart laeuft default als uid 65532 (non-root) -> bind auf 80/443 = permission denied.
+    # Deshalb Root mit ausschliesslich NET_BIND_SERVICE.
+    podSecurityContext:
+      runAsUser: 0
+      runAsGroup: 0
+      runAsNonRoot: false
+      seccompProfile:
+        type: RuntimeDefault
+    securityContext:
+      allowPrivilegeEscalation: false
+      readOnlyRootFilesystem: true
+      capabilities:
+        drop: [ALL]
+        add: [NET_BIND_SERVICE]
+    ports:
+      web:
+        port: 80
+      websecure:
+        port: 443
+      # 8080 ist auf diesem Host von Apache belegt
+      traefik:
+        port: 9000
+    service:
+      spec:
+        type: ClusterIP
