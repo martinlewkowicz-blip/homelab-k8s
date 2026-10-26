@@ -3,11 +3,11 @@ kind: HelmRelease
 metadata:
   name: linkding
   namespace: linkding
-      spec:            
-        interval: 30m
-        upgrade:                                                                                                                                                                
-          force: true        
-          cleanupOnFail: true    
+  spec:            
+   interval: 30m
+    upgrade:                                                                                                                                                                
+     force: true        
+   cleanupOnFail: true    
   chart:
     spec:
       chart: linkding
