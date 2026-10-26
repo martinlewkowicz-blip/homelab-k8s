@@ -32,13 +32,13 @@ data:
       "models": {
         "providers": {
           "ollama": {
-            "baseUrl": "http://ollama-pi.ollama-pi.svc.cluster.local:11434",
+            "baseUrl": "http://ollama.ollama.svc.cluster.local:11434",
             "apiKey": "ollama-local",
             "api": "ollama",
             "models": [
               {
-                "id": "qwen2.5:0.5b",
-                "name": "Qwen2.5 0.5B",
+                "id": "qwen2.5-coder:7b",
+                "name": "Qwen2.5 Coder 7B",
                 "contextWindow": 16384,
                 "maxTokens": 2048
               }

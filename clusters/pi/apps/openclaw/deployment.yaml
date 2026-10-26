@@ -16,6 +16,8 @@ spec:
       labels:
         app: openclaw
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: thevoid
       automountServiceAccountToken: false
       securityContext:
         fsGroup: 1000
@@ -161,7 +163,7 @@ spec:
       volumes:
         - name: openclaw-home
           persistentVolumeClaim:
-            claimName: openclaw-home-pvc
+            claimName: openclaw-home-void
         - name: config
           configMap:
             name: openclaw-config
