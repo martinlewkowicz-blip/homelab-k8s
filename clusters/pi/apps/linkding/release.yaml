@@ -3,19 +3,19 @@ kind: HelmRelease
 metadata:
   name: linkding
   namespace: linkding
-    spec:
-      interval: 30m
-      upgrade:
-        force: true
-        cleanupOnFail: true
-      chart:
-        spec:                                                                                                                                                                 
-          chart: linkding
-          version: "3.0.0"
-          sourceRef:
-            kind: HelmRepository
-            name: linkding
-            namespace: linkding     
+  spec:
+    interval: 30m
+    upgrade:
+      force: true
+      cleanupOnFail: true
+    chart:
+      spec:                                                                                                                                                                 
+        chart: linkding
+        version: "3.0.0"
+        sourceRef:
+          kind: HelmRepository
+          name: linkding
+          namespace: linkding     
   values:
     controller:
       # SQLite auf einem RWO-Volume: niemals zwei Pods gleichzeitig auf derselben DB
