@@ -6,3 +6,4 @@ resources:
   - ollama
   - ollama-pi
   - infrastructure.yaml
+  - openclaw
