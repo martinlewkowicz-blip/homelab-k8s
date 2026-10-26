@@ -20,3 +20,14 @@ spec:
       kubernetes.io/hostname: thevoid
     deviceListStrategy: envvar
     deviceIDStrategy: uuid
+      affinity: null
+      tolerations:
+        - key: CriticalAddonsOnly
+          operator: Exists
+        - key: nvidia.com/gpu
+          operator: Exists
+          effect: NoSchedule
+        - key: gpu
+          operator: Equal
+          value: on-demand
+          effect: NoSchedule
