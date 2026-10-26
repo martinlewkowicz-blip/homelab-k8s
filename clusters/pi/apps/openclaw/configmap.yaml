@@ -24,12 +24,6 @@ data:
           "model": {
             "primary": "ollama/qwen2.5:0.5b"
           }
-        },
-        "entries": {
-          "default": {
-            "name": "OpenClaw Assistant",
-            "workspace": "~/.openclaw/workspace"
-          }
         }
       },
       "cron": {
