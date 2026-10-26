@@ -14,6 +14,22 @@ spec:
         name: linkding
         namespace: linkding
   values:
+    controller:
+      # SQLite auf einem RWO-Volume: niemals zwei Pods gleichzeitig auf derselben DB
+      updateStrategy:
+        type: Recreate
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        memory: 768Mi
+    env:
+      - name: TZ
+        value: UTC
+      # Django verlangt die Origins, ueber die das UI im Browser erreichbar ist
+      - name: LD_CSRF_TRUSTED_ORIGINS
+        value: "http://raspberrypi.fritz.box,http://192.168.178.100"
     service:
       type: NodePort
     ports:
