@@ -15,30 +15,27 @@ spec:
         namespace: flux-system
   install:
     createNamespace: true
-    values:
-      nodeSelector:
-        kubernetes.io/hostname: thevoid
-
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: kubernetes.io/hostname
-                    operator: In
-                    values:
-                      - thevoid
-
-      tolerations:
-        - key: CriticalAddonsOnly
-          operator: Exists
-        - key: nvidia.com/gpu
-          operator: Exists
-          effect: NoSchedule
-        - key: gpu
-          operator: Equal
-          value: on-demand
-          effect: NoSchedule
-
-      deviceListStrategy: envvar
-      deviceIDStrategy: uuid
+  values:
+    nodeSelector:
+      kubernetes.io/hostname: thevoid
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: kubernetes.io/hostname
+                  operator: In
+                  values:
+                    - thevoid
+    tolerations:
+      - key: CriticalAddonsOnly
+        operator: Exists
+      - key: nvidia.com/gpu
+        operator: Exists
+        effect: NoSchedule
+      - key: gpu
+        operator: Equal
+        value: on-demand
+        effect: NoSchedule
+    deviceListStrategy: envvar
+    deviceIDStrategy: uuid
