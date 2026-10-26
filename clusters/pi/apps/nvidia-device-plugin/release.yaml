@@ -37,5 +37,7 @@ spec:
         operator: Equal
         value: on-demand
         effect: NoSchedule
+    runtimeClassName: nvidia
+    deviceDiscoveryStrategy: nvml
     deviceListStrategy: envvar
     deviceIDStrategy: uuid
